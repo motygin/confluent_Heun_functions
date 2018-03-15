@@ -18,12 +18,15 @@ function [R,N] = findR()
     fact = 1;
     n = 1;
   
-    do
+    while (true)
       n = n + 1;
       fact = fact * n;
       R0 = R;
       R = (log(fact)-logeps)/n;
-    until (R > R0);
+      if (R > R0)
+        break;
+      end
+    end
   
     N = n-1;
     R = (fact/n/eps)^(1/N);
