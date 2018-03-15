@@ -31,9 +31,9 @@
 % dval2woexp = dval2 * exp(epsilon*z)
 % err2woexp = err2 * abs(exp(epsilon*z))
 %
-% Oleg V. Motygin, copyright 2017-2018, license: GNU GPL v3
+% Oleg V. Motygin, copyright 2018, license: GNU GPL v3
 %
-% 27 December 2017
+% 15 March 2018
 %
 function [val1,dval1,err1,val2,dval2,err2,numb,wrnmsg,val1woexp,dval1woexp,err1woexp,val2woexp,dval2woexp,err2woexp] = HeunCnear1(q,alpha,gamma,delta,epsilon,z)
   
@@ -56,11 +56,11 @@ function [val1,dval1,err1,val2,dval2,err2,numb,wrnmsg,val1woexp,dval1woexp,err1w
       
     val1 = m(1,1)*val1f + m(1,2) * val1s;
     dval1 = m(1,1)*dval1f + m(1,2) * dval1s;
-    err1 = abs(m(1,1))*err1f + abs(m(1,2))*err1s;
+    err1 = abs(m(1,1))*err1f + abs(m(1,2))*err1s + errJ01;
     
     val2 = m(2,1)*val1f + m(2,2) * val1s;
     dval2 = m(2,1)*dval1f + m(2,2) * dval1s;
-    err2 = abs(m(2,1))*err1f + abs(m(2,2))*err1s;
+    err2 = abs(m(2,1))*err1f + abs(m(2,2))*err1s + errJ01;
   
     val1woexp = m(1,1)*val1fwoexp + m(1,2) * val1swoexp;
     dval1woexp = m(1,1)*dval1fwoexp + m(1,2) * dval1swoexp;
