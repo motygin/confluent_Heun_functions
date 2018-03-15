@@ -21,7 +21,7 @@
 %
 % Oleg V. Motygin, copyright 2018, license: GNU GPL v3
 %
-% 15 February 2018
+% 15 March 2018
 %
 function [C10,err,numb,wrnmsg] = HeunCjoin10(q,alpha,gamma,delta,epsilon)
     
@@ -43,7 +43,7 @@ function [C10,err,numb,wrnmsg] = HeunCjoin10(q,alpha,gamma,delta,epsilon)
     [val1s,dval1s,err1s,numb1s,wrnmsg1s] = HeunCs1(q,alpha,gamma,delta,epsilon,joinpt);
 
     wrnmsg = strcat(wrnmsg0,wrnmsg0s,wrnmsg1,wrnmsg1s);
-    err = err0 + err0s + err1 + err1s;
+    err = err0/(1+abs(val0)) + err0s/(1+abs(val0s)) + err1/(1+abs(val1)) + err1s/(1+abs(val1s));
     numb = numb0 + numb0s + numb1 + numb1s;
   
     if isempty(wrnmsg)
