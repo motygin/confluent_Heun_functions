@@ -28,9 +28,9 @@
 % dval2woexp = dval2 * exp(epsilon*z)
 % err2woexp = err2 * abs(exp(epsilon*z))
 %
-% Oleg V. Motygin, copyright 2017-2018, license: GNU GPL v3
+% Oleg V. Motygin, copyright 2018, license: GNU GPL v3
 %
-% 26 December 2017
+% 16 March 2018
 %
 function [val1,dval1,err1,val2,dval2,err2,numb,wrnmsg,val1woexp,dval1woexp,err1woexp,val2woexp,dval2woexp,err2woexp] = HeunCfaraway(q,alpha,gamma,delta,epsilon,z)
   
@@ -41,13 +41,12 @@ function [val1,dval1,err1,val2,dval2,err2,numb,wrnmsg,val1woexp,dval1woexp,err1w
 
   hs = sign(imag(z));
   
-  [R,N] = findR();
-  
-  infpt = 2 * max(1,R/(abs(eps)+abs(epsilon))) * 1j * hs;
-
   [C0A,CsA,errJA,numbJA,wrnmsgJA] = HeunCjoin0infA(q,alpha,gamma,delta,epsilon,hs*pi/2);
   [C0B,CsB,errJB,numbJB,wrnmsgJB] = HeunCjoin0infB(q,alpha,gamma,delta,epsilon,hs*pi/2);
   
+  [R,N] = findR();
+  infpt = 2 * max(1,R/(abs(eps)+abs(epsilon))) * z/abs(z);
+
   if abs(z)>abs(infpt)
   
     [valA,dvalA,errA,numbA,wrnmsgA] = HeunCinfA(q,alpha,gamma,delta,epsilon,z);
@@ -96,4 +95,3 @@ function [val1,dval1,err1,val2,dval2,err2,numb,wrnmsg,val1woexp,dval1woexp,err1w
   end
     
 end
-
