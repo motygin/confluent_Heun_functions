@@ -4,7 +4,7 @@
 % HeunC'(0)=-q/gamma when gamma is not equal to 0
 % HeunC'(z)/log(z) -> -q as z->0 when gamma = 0
 %
-% computed by a consequence of power expansions with improvements near points z=1 and z=\infty
+% computed by a consequence of power expansions with improvements near point z=1
 %
 % it is assumed that z does not belong to the branch-cut [1,\infty)
 %
@@ -26,7 +26,7 @@
 %
 % Oleg V. Motygin, copyright 2018, license: GNU GPL v3
 %
-% 26 January 2018
+% 20 March 2018
 %
 function [val,dval,err,numb,wrnmsg,valwoexp,dvalwoexp,errwoexp] = HeunC(q,alpha,gamma,delta,epsilon,z)
   
@@ -49,10 +49,6 @@ function [val,dval,err,numb,wrnmsg,valwoexp,dvalwoexp,errwoexp] = HeunC(q,alpha,
 
       [val,dval,err,val2,dval2,err2,numb,wrnmsg,valwoexp,dvalwoexp,errwoexp,val2woexp,dval2woexp,err2woexp] = HeunCnear1(q,alpha,gamma,delta,epsilon,z);
 
-    elseif (abs(epsilon)>1/2)&&(abs(q)<2)&&(abs(z)>Heun_proxcoinf_rel*R/(abs(eps)+abs(epsilon)))
-  
-      [val,dval,err,val2,dval2,err2,numb,wrnmsg,valwoexp,dvalwoexp,errwoexp,val2woexp,dval2woexp,err2woexp] = HeunCfaraway(q,alpha,gamma,delta,epsilon,z);
-  
     else
       
       [val,dval,err,numb,wrnmsg,valwoexp,dvalwoexp,errwoexp] = HeunC0(q,alpha,gamma,delta,epsilon,z);
