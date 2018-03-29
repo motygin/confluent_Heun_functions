@@ -28,7 +28,7 @@
 %
 % Heun_proxco and Heun_proxcoinf_rel specify relative proximity
 % to singular point where special representation is used
-% By default Heun_proxco = 0.05; Heun_proxcoinf_rel = 0.5 
+% By default Heun_proxco = 0.05; Heun_proxcoinf_rel = 1.0 
 %
 % Heun_memlimit is the maximum number of sets of data (parameters of confluent Heun function 
 % and corresponding connection coefficients) which are kept in memory.
@@ -36,7 +36,7 @@
 %
 % Oleg V. Motygin, copyright 2018, license: GNU GPL v3
 %
-% 15 February 2018
+% 27 March 2018
 %
 function HeunOpts(varargin)
 
@@ -107,13 +107,13 @@ function HeunOpts(varargin)
   
   if isfield(opts,'proxcoinfrel')
     if isempty(opts.proxcoinfrel)
-      Heun_proxcoinf_rel = 0.5;
+      Heun_proxcoinf_rel = 1.0;
     else
       Heun_proxcoinf_rel = opts.proxcoinfrel;
     end
   else
     if isempty(Heun_proxcoinf_rel)
-      Heun_proxcoinf_rel = 0.5;
+      Heun_proxcoinf_rel = 1.0;
     end
   end
   
