@@ -13,3 +13,5 @@ HeunC, HeunCs: with improvement near singularity z=1
 HeunOpts: tuning of internal parameters
 
 tested in the Octave numerical environment, intended to be Matlab compatible
+
+Ref.: http://arxiv.org/abs/1804.01007
